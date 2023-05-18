@@ -92,11 +92,13 @@ const buildShareFile = ({
   location = '',
   startDatetime,
   timezone = '',
+  vtimezone = '',
   title = '',
 }) => {
   let content = [
     'BEGIN:VCALENDAR',
     'VERSION:2.0',
+    ...(vtimezone ? [vtimezone] : []),
     'BEGIN:VEVENT',
     `URL:${document.URL}`,
     'METHOD:PUBLISH',
@@ -132,6 +134,7 @@ export const buildShareUrl = ({
     location = '',
     startDatetime,
     timezone = '',
+    vtimezone = '',
     title = ''
   },
   type,
@@ -145,6 +148,7 @@ export const buildShareUrl = ({
     location: encodeURI ? encodeURIComponent(location) : location,
     startDatetime: formatDate(startDatetime),
     timezone,
+    vtimezone,
     title: encodeURI ? encodeURIComponent(title) : title,
   };
 
